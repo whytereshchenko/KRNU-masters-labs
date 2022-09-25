@@ -1,0 +1,273 @@
+---
+title: "Розділ 3 Лабораторна робота №2. Маніпулювання даними"
+author: "[Daniil Tereshchenko](https://www.linkedin.com/in/daniil-tereshchenko/), `r format(Sys.time(), '%Y')`"
+date: "`r Sys.Date()`"
+output: 
+  cleanrmd::html_document_clean:
+    theme: axist
+bibliography: references_lab.bib
+---
+
+# Імпорт даних
+```{r setup}
+#install_formats()
+library(rio)
+df <- data.frame(x = 1:5, y = rnorm(5))
+export(df, "data/df_data_frame.txt")
+dfImp <- import("data/df_data_frame.txt")
+dfImp
+```
+
+```{r}
+data("mtcars") #підключення стандартного набору даних mtcars
+# head(mtcars)
+export(head(mtcars), "data/mtcars.dta")
+convert('data/mtcars.dta', 'data/mtcars.csv')
+import("data/mtcars.csv")
+```
+
+## Імпорт з реляційних баз даних
+```{r message=FALSE, warning=FALSE, paged.print=FALSE}
+library(dbplyr)
+library(dplyr)
+library(RSQLite)
+
+#my_db <- src_sqlite("data/my_db.sqlite3", create = T)
+```
+
+```{r}
+library(nycflights13)
+# flights_sqlite <- copy_to(my_db, flights, temporary = FALSE, 
+#                           indexes = list(c("year", "month", "day"), "carrier", "tailnum"))
+# head(flights_sqlite)
+```
+
+```{r}
+con <- DBI::dbConnect(RSQLite::SQLite(), path = "data/my_db.sqlite3")
+flights_sqlite <- copy_to(con, nycflights13::flights, "flights",
+        temporary = FALSE, 
+        indexes = list(
+          c("year", "month", "day"), 
+          "carrier", 
+          "tailnum",
+          "dest"
+        )
+)
+
+head(flights_sqlite)
+```
+
+```{r}
+DBI::dbDisconnect(con)
+```
+
+# Приведення даних до охайного вигляду
+```{r  message=FALSE, warning=FALSE}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
+```{r}
+# Відносний критерій на 10000
+table1 %>%
+  mutate(rate = cases / population * 10000)
+```
+
+```{r}
+# Кількість випадків на рік
+table1 %>%
+  count(year, wt = cases)
+```
+
+```{r}
+library(ggplot2)
+ggplot(table1, aes(year, cases)) +
+    geom_line(aes(group = country), colour = "grey50") +
+    geom_line(aes(colour = country))    # geom_line бо мені більше подобається ніж geomm_point
+```
+## Завдання на самостійну роботу. Побудувати динаміку відносного критерію rate кількості захворювань по роках для кожної держави.
+```{r}
+table1 %>%
+  mutate(rate = cases / population * 10000) %>%
+  ggplot(aes(year, rate)) +
+  geom_line(aes(group = country), colour = "grey50") +
+  geom_line(aes(colour = country))
+```
+
+## Процедури Separating і Uniting
+```{r}
+table3
+```
+
+```{r}
+table3 %>%
+  separate(rate, into = c("cases", "population"))
+```
+```{r}
+table5
+```
+
+```{r}
+table5 %>%
+    unite(new, century, year, sep = "")
+```
+## Пропущені значення
+```{r}
+stocks <- tibble(
+  year = c(2015, 2015, 2015, 2015, 2016, 2016, 2016),
+  qtr = c(1, 2, 3, 4, 2, 3, 4),
+  return = c(1.88, 0.59, 0.35, NA, 0.92, 0.17, 2.66)
+)
+stocks
+```
+
+```{r}
+stocks %>%
+  spread(year, return)
+```
+
+```{r}
+stocks %>%
+  complete(year, qtr)
+```
+
+```{r}
+stocks %>%
+  spread(year, return) %>%
+    gather(year, return, '2015':'2016', na.rm = TRUE)
+```
+
+```{r}
+df <- data.frame(Month = 1:12, Year = c(2000, rep(NA,11)))
+df
+```
+
+```{r}
+df %>%
+  fill(Year)
+```
+
+##  Трансформація
+```{r}
+library(dplyr)
+
+starwars %>% 
+  filter(species == "Droid")
+```
+
+```{r}
+starwars %>% 
+  select(name, ends_with("color"))
+```
+
+```{r}
+starwars %>%
+  mutate(name, bmi = mass / ((height / 100) ^ 2 )) %>%
+    select(name:mass, bmi)
+```
+
+```{r}
+starwars %>%
+  arrange(desc(mass))
+```
+
+```{r}
+starwars %>%
+  group_by(species) %>%
+  summarize(
+    n = n(),
+    mass = mean(mass, na.rm = TRUE)
+  ) %>%
+  filter(n > 1)
+```
+
+# Приклад виконання індівідуального завдання
+## Постановка задачі
+
+Створити реляційну БД, використовуючи СУБД SQLite. Виконати експорт даних у БД зі стандартного набору nycflights13 щодо авіаперевезень аеропорту Нью-Йорк за 2013 рік.
+
+Налаштувати індекси: (“year,” “month,” “day”), “carrier,” “tailnum,” “dest.”
+Підготувати RMarkdown-документ, який би давав можливість генерувати електронний звіт з результатами виконання наступних задач:
+
+вибрати поля year:day, dep_delay, arr_delay з таблиці flights.
+вибрати всі рейси з часом затримки (dep_delay) більше ніж 240 хв.
+Обчислити середній час затримки вильоту (dep_time) з попереднім групуванням по відстані авіамаршруту (dest).
+Обчислити для кожного бортового номеру літака з кількістю рейсів більше 100 середній час затримки прибуття та кількість рейсів; дані впорядкувати за убуванням часу затримки прибуття.
+розділити набір даних по літаках і розрахувати кількість вильотів і середню дальність польоту і затримку прибуття; побудувати графік залежності середньої затримки від середньої дальності польоту (за допомогою ggplot2).
+знайти кількість літаків і кількість вильотів в усі можливі пункти призначення.
+
+## Виконання завдання
+```{r}
+#my_db <- src_sqlite("data/my_db.sqlite3", create = T)
+```
+
+```{r}
+con <- DBI::dbConnect(RSQLite::SQLite(), path = "data/my_db.sqlite3")
+flights_sqlite <- copy_to(con, nycflights13::flights, "flights",
+        temporary = FALSE, 
+        indexes = list(
+          c("year", "month", "day"),  #Налаштовуємо індекси: (“year,” “month,” “day”), “carrier,” “tailnum,” “dest.”
+          "carrier", 
+          "tailnum",
+          "dest"
+        )
+)
+
+head(flights_sqlite)
+```
+
+```{r}
+flights_sqlite %>% select(year:day, dep_delay, arr_delay) #Виводимо поля year:day, dep_delay, arr_delay з таблиці flights
+```
+
+```{r}
+flights_sqlite %>% filter(dep_delay > 240) #Вибираємо всі рейси з часом затримки (dep_delay) більше ніж 240 хв
+```
+
+```{r}
+flights_sqlite %>%
+  group_by(dest) %>%
+  summarise(delay = mean(dep_time))
+```
+
+```{r}
+#Обчислюємо для кожного бортового номеру літака з кількістю рейсів більше 100 середній час затримки прибуття та кількість рейсів; дані впорядкувати за убуванням часу затримки прибуття
+tailnum_delay_sqlite <- flights_sqlite %>%
+  group_by(tailnum) %>%
+  summarise(
+    delay = mean(arr_delay),
+    n = n()
+  ) %>%
+  arrange(desc(delay)) %>%
+  filter(n > 100)
+tailnum_delay_sqlite
+```
+
+```{r}
+#Розділяємо набір даних по літаках і розрахувати кількість вильотів і середню дальність польоту і затримку прибуття; будуємо графік залежності середньої затримки від середньої дальності польоту 
+library(ggplot2)
+planes <- group_by(flights, tailnum)
+delay <- summarise(planes,
+            count = n(),
+            dist = mean(distance, na.rm = TRUE),
+            delay = mean(arr_delay, na.rm = TRUE))
+delay <- filter(delay, count > 20, dist < 2000)
+
+ggplot(delay, aes(dist, delay)) +
+  geom_point(aes(size = count), alpha = 1/2) +
+  geom_smooth() + 
+  scale_size_area()
+```
+
+```{r}
+#Знаходимо кількість літаків і кількість вильотів в усі можливі пункти призначення
+destinations <- group_by(flights, dest)
+summarise(destinations,
+  planes = n_distinct(tailnum),
+  flights = n()
+)
+```
+
+```{r}
+DBI::dbDisconnect(con)
+```   

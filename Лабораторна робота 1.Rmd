@@ -1,0 +1,135 @@
+---
+title: "Розділ 2 Модуль 1. Базовий. Лабораторна робота №1. Створення основи типового Data Science-проєкту"
+author: "[Daniil Tereshchenko](https://www.linkedin.com/in/daniil-tereshchenko/), `r format(Sys.time(), '%Y')`"
+date: "`r Sys.Date()`"
+output: 
+  cleanrmd::html_document_clean:
+    theme: axist
+bibliography: references_lab.bib
+---
+
+## Функція має вигляд:
+
+$y(x)=b_ox+b_1+b_2x^2$
+
+### Задаємо параметри функції
+
+```{r setup_d}
+b0 <- 2
+b1 <- 3
+b2 <- 1.57
+```
+
+### Задаємо область визначення
+
+```{r setup_o}
+x <- seq(-1, 1, .1)
+y <- b0 + b1 * x + b2 * x^2
+
+plot(x, y,
+     type = "l",
+     col = "red",
+     main = "Графік функції",
+     xlab = "x",
+     ylab = "y"
+     )
+points(x, y,
+       col = "blue")
+```
+
+### Cтворюємо дата-фрейм
+
+```{r df_create}
+df <- data.frame(x = x, y = y) 
+```
+
+## Інсталюємо та підключаємо пакет Rio
+
+```{r setup_rio}
+# install.packages("rio")
+library(rio)
+```
+
+### Виконуємо експорт дата-фрейму в файл csv
+
+```{r df_export}
+export(df, "data/data.csv")
+```
+
+### Виконуємо імпорт дата-фрейму із файлу csv
+
+```{r df_import}
+dfNew <-  import("data/data.csv")
+```
+
+## Таблиця засобами knitr
+
+```{r knitr_table_1}
+knitr::kable(head(dfNew),
+             caption = "_Табл. 1. Фрагмент таблиці даних_")
+```
+
+## Інсталюємо та підключаємо пакет stargazer
+
+```{r setup_stargazer}
+# install.packages("stargazer")
+library(stargazer)
+```
+
+### Таблиця засобами stargazer
+
+```{r stargazer_table}
+stargazer::stargazer(head(dfNew),
+                     type = "html",
+                     summary = FALSE,
+             title = "_Табл. 1. Фрагмент таблиці даних_")
+
+```
+
+## Інсталюємо та підключаємо пакет xtable
+
+```{r setup_xtable}
+# install.packages("xtable")
+library(xtable)
+```
+
+### Таблиця засобами xtable
+
+```{r xtable_table}
+xtable(head(dfNew),
+                     type = "html",
+                     html.table.attributes="border=0",
+                     summary = FALSE,
+             caption = "_Табл. 1. Фрагмент таблиці даних_")
+```
+
+## Результуюча таблиця
+
+```{r knitr_table_2}
+
+df_res <- data.frame(
+  x = c("b0", "b1","b2", "x1", "x2"), 
+  y = c(b0, b1, b2, x[1], x[length(x-1)])
+)
+knitr::kable(head(df_res),
+  col.names = c('Параметр','Значення'),
+  caption = "_Табл. 2. Результуюча таблиця_")
+```
+
+## ggplot2 - оптимізація коду та можливості пакету
+
+### Інсталюємо та підключаємо пакет ggplot2
+
+```{r setup_ggplot2}
+#install.packages("ggplot2")
+library(ggplot2)
+```
+
+### Графік функції засобами пакету ggplot2
+
+```{r ggplot2_plot}
+ggplot(data = dfNew, aes(x = x, y = y)) + 
+    geom_line(color = "red") + 
+    geom_point(size = 0.75, color = "blue") +
+    labs(title = "Графік функції")
+```

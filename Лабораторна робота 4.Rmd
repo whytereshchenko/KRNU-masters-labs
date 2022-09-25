@@ -1,0 +1,12 @@
+---
+title: "Розділ 5 Лабораторна робота №4. Доставка результатів Data Science-проєкту та його розгортання"
+author: "[Daniil Tereshchenko](https://www.linkedin.com/in/daniil-tereshchenko/), `r format(Sys.time(), '%Y')`"
+date: "`r Sys.Date()`"
+output: 
+  cleanrmd::html_document_clean:
+    theme: axist
+bibliography: references_lab.bib
+---
+
+### Ознайомитися з моїм проєктом можете [тут](https://whytereshchenko.shinyapps.io/lab4_app/).
+
