@@ -271,3 +271,44 @@ summarise(destinations,
 ```{r}
 DBI::dbDisconnect(con)
 ```   
+
+## References
+
+han, Chung-hong, Geoffrey CH Chan, Thomas J. Leeper, and Jason Becker. 2018. Rio: A Swiss-Army Knife for Data File i/o.
+Conway, Joe, Dirk Eddelbuettel, Tomoaki Nishiyama, Sameer Kumar Prayaga, and Neil Tiffin. 2021. RPostgreSQL: R Interface to the PostgreSQL Database System. [https://CRAN.R-project.org/package=RPostgreSQL](https://CRAN.R-project.org/package=RPostgreSQL).
+
+Cooper, Nicholas. 2017. Reader: Suite of Functions to Flexibly Read Data from Files. [https://CRAN.R-project.org/package=reader](https://CRAN.R-project.org/package=reader).
+
+Garrett Grolemund, Hadley Wickham. 2018. R for Data Science. [http://r4ds.had.co.nz/index.html](http://r4ds.had.co.nz/index.html).
+
+Hadley Wickham, Lionel Henry, Romain Francois. 2018. “Introduction to Dplyr. Translation of Andrey Ogurtsov.” Documentation. [http://rpubs.com/aa989190f363e46d/dplyr_intro](http://rpubs.com/aa989190f363e46d/dplyr_intro).
+
+Henry, Lionel, and Hadley Wickham. 2020. Purrr: Functional Programming Tools. [https://CRAN.R-project.org/package=purrr](https://CRAN.R-project.org/package=purrr).
+
+Hester, Jim, and Hadley Wickham. 2021. Odbc: Connect to ODBC Compatible Databases (Using the DBI Interface). [https://CRAN.R-project.org/package=odbc](https://CRAN.R-project.org/package=odbc).
+
+Muller, Kirill. 2021. Hms: Pretty Time of Day. [https://CRAN.R-project.org/package=hms](https://CRAN.R-project.org/package=hms).
+
+Müller, Kirill, and Hadley Wickham. 2021. Tibble: Simple Data Frames. [https://CRAN.R-project.org/package=tibble](https://CRAN.R-project.org/package=tibble).
+
+Müller, Kirill, Hadley Wickham, David A. James, and Seth Falcon. 2022. RSQLite: SQLite Interface for r. [https://CRAN.R-project.org/package=RSQLite](https://CRAN.R-project.org/package=RSQLite).
+
+Ooms, Jeroen, David James, Saikat DebRoy, Hadley Wickham, and Jeffrey Horner. 2021. RMySQL: Database Interface and MySQL Driver for r. [https://CRAN.R-project.org/package=RMySQL](https://CRAN.R-project.org/package=RMySQL).
+
+R Special Interest Group on Databases (R-SIG-DB), Hadley Wickham, and Kirill Muller. 2021. DBI: R Database Interface. [https://CRAN.R-project.org/package=DBI](https://CRAN.R-project.org/package=DBI).
+
+Spinu, Vitalie, Garrett Grolemund, and Hadley Wickham. 2021. Lubridate: Make Dealing with Dates a Little Easier. [https://CRAN.R-project.org/package=lubridate](https://CRAN.R-project.org/package=lubridate).
+
+2021a. Nycflights13: Flights That Departed NYC in 2013. [https://github.com/hadley/nycflights13](https://github.com/hadley/nycflights13).
+
+2021c. Tidyverse: Easily Install and Load the Tidyverse. [https://CRAN.R-project.org/package=tidyverse](https://CRAN.R-project.org/package=tidyverse).
+
+Wickham, Hadley, and Jennifer Bryan. 2021. Bigrquery: An Interface to Google’s BigQuery ’API’. [https://CRAN.R-project.org/package=bigrquery](https://CRAN.R-project.org/package=bigrquery).
+
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2021. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. [https://CRAN.R-project.org/package=ggplot2](https://CRAN.R-project.org/package=ggplot2).
+
+Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Muller. 2022. Dplyr: A Grammar of Data Manipulation. [https://CRAN.R-project.org/package=dplyr](https://CRAN.R-project.org/package=dplyr).
+
+Wickham, Hadley, and Maximilian Girlich. 2022. Tidyr: Tidy Messy Data. [https://CRAN.R-project.org/package=tidyr](https://CRAN.R-project.org/package=tidyr).
+
+Wickham, Hadley, Maximilian Girlich, and Edgar Ruiz. 2021. Dbplyr: A Dplyr Back End for Databases. [https://CRAN.R-project.org/package=dbplyr](https://CRAN.R-project.org/package=dbplyr).

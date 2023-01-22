@@ -78,10 +78,12 @@ library(stargazer)
 
 ### Таблиця засобами stargazer
 
-```{r stargazer_table}
-stargazer::stargazer(head(dfNew),
+```{r stargazer_table, results='asis'}
+stargazer(head(dfNew),
                      type = "html",
                      summary = FALSE,
+                     out="lb1_stargazer.html", 
+                     out.header=TRUE,
              title = "_Табл. 1. Фрагмент таблиці даних_")
 
 ```
@@ -97,7 +99,7 @@ library(xtable)
 
 ```{r xtable_table}
 xtable(head(dfNew),
-                     type = "html",
+                     type = "latex",
                      html.table.attributes="border=0",
                      summary = FALSE,
              caption = "_Табл. 1. Фрагмент таблиці даних_")
@@ -133,3 +135,16 @@ ggplot(data = dfNew, aes(x = x, y = y)) +
     geom_point(size = 0.75, color = "blue") +
     labs(title = "Графік функції")
 ```
+
+## References
+
+Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, Winston Chang, and Richard Iannone. 2022. Rmarkdown: Dynamic Documents for r. [https://CRAN.R-project.org/package=rmarkdown](https://CRAN.R-project.org/package=rmarkdown).
+Chan, Chung-hong, and Thomas J. Leeper. 2021. Rio: A Swiss-Army Knife for Data i/o. [https://github.com/leeper/rio](https://github.com/leeper/rio).
+Garrett Grolemund, Hadley Wickham. 2018. R for Data Science. [http://r4ds.had.co.nz/index.html](http://r4ds.had.co.nz/index.html).
+R Core Team. 2022. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing. [https://www.R-project.org/](https://www.R-project.org/).
+RStudio Team. 2020. RStudio: Integrated Development Environment for r. Boston, MA: RStudio, PBC. [http://www.rstudio.com/](http://www.rstudio.com/).
+sandino. 2013. “Cheat Sheet of Markdown.” Article. [https://github.com/sandino/Markdown-Cheatsheet#emphasis](https://github.com/sandino/Markdown-Cheatsheet#emphasis).
+Wickham, Hadley. 2009. Ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. http://ggplot2.org.
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2021. Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. https://CRAN.R-project.org/package=ggplot2.
+wikipedia. 2018a. “Cross-Industry Standard Process for Data Mining.” Article. https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining.
+Yihui Xie, Garrett Grolemund, J. J. Allaire. 2018. R Markdown: The Definitive Guide. https://bookdown.org/yihui/rmarkdown/.
