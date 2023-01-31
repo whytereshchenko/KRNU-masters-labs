@@ -1,0 +1,13 @@
+name: lab4_app
+title:
+username:
+account: whytereshchenko
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7112455
+bundleId: 6335602
+url: https://whytereshchenko.shinyapps.io/lab4_app/
+when: 1664101832.76153
+lastSyncTime: 1664101832.76154
+asMultiple: FALSE
+asStatic: FALSE

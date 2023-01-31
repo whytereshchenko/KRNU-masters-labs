@@ -1,0 +1,6 @@
+book_filename: "DS-book-lab"
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Розділ "
+delete_merged_file: true

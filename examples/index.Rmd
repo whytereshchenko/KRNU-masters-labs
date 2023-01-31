@@ -1,0 +1,37 @@
+--- 
+title: "Data Science на R. Лабораторний практикум (draft version)"
+author: "&copy; [Сидоренко В. М.](https://www.linkedin.com/in/valeriy-sydorenko-6782279a/)"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib, references_lab.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: VGamaley/DS-book-lab
+description: "Лабораторні роботи з дисципліни 'Інтелектуальний аналіз даних'"
+---
+
+
+
+# Вступ
+
+<!-- >Русский военный корабль, иди нах`*`й!   -->
+<!-- >Белорусский трактор, иди в п`*`зду! -->
+
+Лабораторний практикум призначений для виконання лабораторних робіт з дисципліни "Інтелектуальний аналіз даних", який викладається в рамках освітньої магістерської програми "Комп'ютерна інженерія" на кафедрі [комп'ютерної інженерії та електроніки](http://cis.kdu.edu.ua/) [Кременчуцького національного університету імені Михайла Остроградського](http://www.kdu.edu.ua/). Автор: доцент, к. т. н. [Валерій СИДОРЕНКО](https://www.linkedin.com/in/valeriy-sydorenko-6782279a/).
+
+Мета посібника, який у великій мірі є компілятивним, --  у зручній і адаптованій формі довести новітні технології аналізу даних у середовищі R, спираючись на якісні і відомі першоджерела, зокрема `vignetts` відповідних програмних пакетів з ресурсу [CRAN](https://cran.r-project.org/). Тому місцями текст є безпосереднім  перекладом з англійської.  
+
+Структура посібника спирається на міждисциплінарний стандарт CRISP DM [@CRISP_DM] і надає можливість поступово опанувати роботу з відповідним  інструментарієм  для реалізації всіх етапів аналізу даних: імпорту та маніпулювання даними, розвідувального аналізу даних, візуалізації, моделювання та розгортання Data Science-проекту.
+
+Критичні відгуки та зауваження прохання надсилати наа адресою vnsidorenko@gmail.com.
+
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'rio', 'dbplyr', 'dplyr', 'RSQLite', 'tidyverse', 'tidyr', 'RMySQL', 'RPostgreSQL', 'odbc', 'bigrquery', 'nycflights13', 'DBI', 'ggplot2', 'stringr', 'lubridate', 'hms', 'blob', 'reader', 'tibble', 'purrr', 'desctable', 'GGally', 'corrplot', 'PerformanceAnalytics', 'FactoMineR', 'factoextra', 'funModeling', 'desctable', 'ade4', 'psych', 'smacof', 'WVPlots', 'caret', 'car', 'randomForest', 'caret', 'arules', 'arulesViz', 'fpp', 'fpp2', 'fpp3', 'rvest', 'httr', 'RCurl', 'XML', 'xml2'
+), 'packages.bib')
+```

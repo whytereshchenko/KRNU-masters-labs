@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Data Science на R. Лабораторний практикум (draft version)</title>
+  <meta name="description" content="Лабораторні роботи з дисципліни ‘Інтелектуальний аналіз даних’" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Data Science на R. Лабораторний практикум (draft version)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Лабораторні роботи з дисципліни ‘Інтелектуальний аналіз даних’" />
+  <meta name="github-repo" content="VGamaley/DS-book-lab" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Data Science на R. Лабораторний практикум (draft version)" />
+  
+  <meta name="twitter:description" content="Лабораторні роботи з дисципліни ‘Інтелектуальний аналіз даних’" />
+  
+
+<meta name="author" content="© Сидоренко В. М." />
+
+
+<meta name="date" content="2022-04-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="modul1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.22/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Вступ<span></span></a></li>
+<li class="chapter" data-level="2" data-path="modul1.html"><a href="modul1.html"><i class="fa fa-check"></i><b>2</b> Модуль 1. Базовий. Лабораторна робота №1. Створення основи типового Data Science-проєкту<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="modul1.html"><a href="modul1.html#що-ви-будете-вміти"><i class="fa fa-check"></i><b>2.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="modul1.html"><a href="modul1.html#короткі-теоретичні-відомості"><i class="fa fa-check"></i><b>2.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="modul1.html"><a href="modul1.html#що-таке-data-science-проект"><i class="fa fa-check"></i><b>2.2.1</b> Що таке Data Science-проект?<span></span></a></li>
+<li class="chapter" data-level="2.2.2" data-path="modul1.html"><a href="modul1.html#концепція-грамотного-програмування"><i class="fa fa-check"></i><b>2.2.2</b> Концепція грамотного програмування<span></span></a></li>
+<li class="chapter" data-level="2.2.3" data-path="modul1.html"><a href="modul1.html#markdown-і-rmarkdown"><i class="fa fa-check"></i><b>2.2.3</b> Markdown і RMarkdown<span></span></a></li>
+<li class="chapter" data-level="2.2.4" data-path="modul1.html"><a href="modul1.html#інсталяція-r"><i class="fa fa-check"></i><b>2.2.4</b> Інсталяція R<span></span></a></li>
+<li class="chapter" data-level="2.2.5" data-path="modul1.html"><a href="modul1.html#інсталяція-rstudio"><i class="fa fa-check"></i><b>2.2.5</b> Інсталяція RStudio<span></span></a></li>
+<li class="chapter" data-level="2.2.6" data-path="modul1.html"><a href="modul1.html#CreateRMarkdown"><i class="fa fa-check"></i><b>2.2.6</b> Створення RMarkdown-документу<span></span></a></li>
+<li class="chapter" data-level="2.2.7" data-path="modul1.html"><a href="modul1.html#генерація-електронного-документу"><i class="fa fa-check"></i><b>2.2.7</b> Генерація електронного документу<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="modul1.html"><a href="modul1.html#приклад-створення-markdown-документу"><i class="fa fa-check"></i><b>2.3</b> Приклад створення Markdown-документу<span></span></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="modul1.html"><a href="modul1.html#постановка-задачі"><i class="fa fa-check"></i><b>2.3.1</b> Постановка задачі<span></span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="modul1.html"><a href="modul1.html#виконання-завдання"><i class="fa fa-check"></i><b>2.3.2</b> Виконання завдання<span></span></a></li>
+<li class="chapter" data-level="2.3.3" data-path="modul1.html"><a href="modul1.html#індивідуальні-завдання-на-лабораторну-роботу"><i class="fa fa-check"></i><b>2.3.3</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+<li class="chapter" data-level="2.3.4" data-path="modul1.html"><a href="modul1.html#домашнє-завдання"><i class="fa fa-check"></i><b>2.3.4</b> Домашнє завдання<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lab_2.html"><a href="lab_2.html"><i class="fa fa-check"></i><b>3</b> Лабораторна робота №2. Маніпулювання даними<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lab_2.html"><a href="lab_2.html#що-ви-будете-вміти-1"><i class="fa fa-check"></i><b>3.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="lab_2.html"><a href="lab_2.html#короткі-теоретичні-відомості-1"><i class="fa fa-check"></i><b>3.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="lab_2.html"><a href="lab_2.html#що-таке-маніпулювання-данними"><i class="fa fa-check"></i><b>3.2.1</b> Що таке маніпулювання данними?<span></span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="lab_2.html"><a href="lab_2.html#імпорт-даних"><i class="fa fa-check"></i><b>3.2.2</b> Імпорт даних<span></span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="lab_2.html"><a href="lab_2.html#приведення-даних-до-охайного-вигляду"><i class="fa fa-check"></i><b>3.2.3</b> Приведення даних до охайного вигляду<span></span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="lab_2.html"><a href="lab_2.html#трансформація"><i class="fa fa-check"></i><b>3.2.4</b> Трансформація<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="lab_2.html"><a href="lab_2.html#приклад-виконання-індівідуального-завдання"><i class="fa fa-check"></i><b>3.3</b> Приклад виконання індівідуального завдання<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="lab_2.html"><a href="lab_2.html#постановка-задачі-1"><i class="fa fa-check"></i><b>3.3.1</b> Постановка задачі<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="lab_2.html"><a href="lab_2.html#виконання-завдання-1"><i class="fa fa-check"></i><b>3.3.2</b> Виконання завдання<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="lab_2.html"><a href="lab_2.html#індивідуальні-завдання-на-лабораторну-роботу-1"><i class="fa fa-check"></i><b>3.3.3</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="lab_3.html"><a href="lab_3.html"><i class="fa fa-check"></i><b>4</b> Лабораторна робота №3. Розвідувальний аналіз даних. Візуалізація<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="lab_3.html"><a href="lab_3.html#що-ви-будете-вміти-2"><i class="fa fa-check"></i><b>4.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="lab_3.html"><a href="lab_3.html#короткі-теоретичні-відомості-2"><i class="fa fa-check"></i><b>4.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="lab_3.html"><a href="lab_3.html#що-таке-розвідувальний-аналіз-даних"><i class="fa fa-check"></i><b>4.2.1</b> Що таке розвідувальний аналіз даних?<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="lab_3.html"><a href="lab_3.html#питання"><i class="fa fa-check"></i><b>4.2.2</b> Питання<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="lab_3.html"><a href="lab_3.html#зниження-розмірності-даних"><i class="fa fa-check"></i><b>4.2.3</b> Зниження розмірності даних<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="lab_3.html"><a href="lab_3.html#приклад-виконання-індивідуального-завдання"><i class="fa fa-check"></i><b>4.3</b> Приклад виконання індивідуального завдання<span></span></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="lab_3.html"><a href="lab_3.html#постановка-задачі-2"><i class="fa fa-check"></i><b>4.3.1</b> Постановка задачі<span></span></a></li>
+<li class="chapter" data-level="4.3.2" data-path="lab_3.html"><a href="lab_3.html#виконання-завдання-2"><i class="fa fa-check"></i><b>4.3.2</b> Виконання завдання<span></span></a></li>
+<li class="chapter" data-level="4.3.3" data-path="lab_3.html"><a href="lab_3.html#індивідуальні-завдання-на-лабораторну-роботу-2"><i class="fa fa-check"></i><b>4.3.3</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><i class="fa fa-check"></i><b>5</b> Лабораторна робота №4. Доставка результатів Data Science-проєкту та його розгортання<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#що-ви-будете-вміти-3"><i class="fa fa-check"></i><b>5.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#короткі-теоретичні-відомості-3"><i class="fa fa-check"></i><b>5.2</b> Короткі теоретичні відомості<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#dash"><i class="fa fa-check"></i><b>5.3</b> Створення дашборду<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#Shiny"><i class="fa fa-check"></i><b>5.4</b> Фреймворк Shiny<span></span></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#структура-shiny-app-застосунку"><i class="fa fa-check"></i><b>5.4.1</b> Структура Shiny App застосунку<span></span></a></li>
+<li class="chapter" data-level="5.4.2" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#структура-front-end-частини"><i class="fa fa-check"></i><b>5.4.2</b> Структура front-end частини<span></span></a></li>
+<li class="chapter" data-level="5.4.3" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#структура-back-end-частини"><i class="fa fa-check"></i><b>5.4.3</b> Структура back-end частини<span></span></a></li>
+<li class="chapter" data-level="5.4.4" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#відлагодження-web-застосунку"><i class="fa fa-check"></i><b>5.4.4</b> Відлагодження web-застосунку<span></span></a></li>
+<li class="chapter" data-level="5.4.5" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#доставка-та-розгортання-web-застосунку"><i class="fa fa-check"></i><b>5.4.5</b> Доставка та розгортання web-застосунку<span></span></a></li>
+<li class="chapter" data-level="5.4.6" data-path="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html"><a href="лабораторна-робота-4.-доставка-результатів-data-science-проєкту-та-його-розгортання.html#індивідуальні-завдання-на-лабораторну-роботу-3"><i class="fa fa-check"></i><b>5.4.6</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="lab_5.html"><a href="lab_5.html"><i class="fa fa-check"></i><b>6</b> Модуль 2. Моделювання. Лабораторна робота №5. Побудова регресійних моделей<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="lab_5.html"><a href="lab_5.html#що-ви-будете-вміти-4"><i class="fa fa-check"></i><b>6.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="lab_5.html"><a href="lab_5.html#короткі-теоретичні-відомості-4"><i class="fa fa-check"></i><b>6.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="lab_5.html"><a href="lab_5.html#що-таке-регресія-і-регресійний-аналіз"><i class="fa fa-check"></i><b>6.2.1</b> Що таке регресія і регресійний аналіз?<span></span></a></li>
+<li class="chapter" data-level="6.2.2" data-path="lab_5.html"><a href="lab_5.html#формальна-постановка-задачі-регресії"><i class="fa fa-check"></i><b>6.2.2</b> Формальна постановка задачі регресії<span></span></a></li>
+<li class="chapter" data-level="6.2.3" data-path="lab_5.html"><a href="lab_5.html#статистичний-підхід"><i class="fa fa-check"></i><b>6.2.3</b> Статистичний підхід<span></span></a></li>
+<li class="chapter" data-level="6.2.4" data-path="lab_5.html"><a href="lab_5.html#підхід-на-основі-машинного-навчання"><i class="fa fa-check"></i><b>6.2.4</b> Підхід на основі машинного навчання<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="lab_5.html"><a href="lab_5.html#ind"><i class="fa fa-check"></i><b>6.3</b> Приклад виконання індивідуального завдання<span></span></a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="lab_5.html"><a href="lab_5.html#розуміння-даних"><i class="fa fa-check"></i><b>6.3.1</b> Розуміння даних<span></span></a></li>
+<li class="chapter" data-level="6.3.2" data-path="lab_5.html"><a href="lab_5.html#підготовка-даних"><i class="fa fa-check"></i><b>6.3.2</b> Підготовка даних<span></span></a></li>
+<li class="chapter" data-level="6.3.3" data-path="lab_5.html"><a href="lab_5.html#rf"><i class="fa fa-check"></i><b>6.3.3</b> Моделювання<span></span></a></li>
+<li class="chapter" data-level="6.3.4" data-path="lab_5.html"><a href="lab_5.html#індивідуальні-завдання-на-лабораторну-роботу-4"><i class="fa fa-check"></i><b>6.3.4</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="lab_6.html"><a href="lab_6.html"><i class="fa fa-check"></i><b>7</b> Лабораторна робота №6. Побудова моделей класифікації<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="lab_6.html"><a href="lab_6.html#що-ви-будете-вміти-5"><i class="fa fa-check"></i><b>7.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="lab_6.html"><a href="lab_6.html#короткі-теоретичні-відомості-5"><i class="fa fa-check"></i><b>7.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="lab_6.html"><a href="lab_6.html#у-чому-полягає-задача-класифікації"><i class="fa fa-check"></i><b>7.2.1</b> У чому полягає задача класифікації?<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="lab_6.html"><a href="lab_6.html#формальна-постановка-задачі-класифікації"><i class="fa fa-check"></i><b>7.2.2</b> Формальна постановка задачі класифікації<span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="lab_6.html"><a href="lab_6.html#пакет-caret"><i class="fa fa-check"></i><b>7.2.3</b> Пакет <code>caret</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="lab_6.html"><a href="lab_6.html#приклад-виконання-індивідуального-завдання-1"><i class="fa fa-check"></i><b>7.3</b> Приклад виконання індивідуального завдання<span></span></a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="lab_6.html"><a href="lab_6.html#навчання-моделі"><i class="fa fa-check"></i><b>7.3.1</b> Навчання моделі<span></span></a></li>
+<li class="chapter" data-level="7.3.2" data-path="lab_6.html"><a href="lab_6.html#експорт-моделі-до-бд"><i class="fa fa-check"></i><b>7.3.2</b> Експорт моделі до БД<span></span></a></li>
+<li class="chapter" data-level="7.3.3" data-path="lab_6.html"><a href="lab_6.html#імпорт-моделі-і-работа-з-нею"><i class="fa fa-check"></i><b>7.3.3</b> Імпорт моделі і работа з нею<span></span></a></li>
+<li class="chapter" data-level="7.3.4" data-path="lab_6.html"><a href="lab_6.html#індивідуальні-завдання-на-лабораторну-роботу-5"><i class="fa fa-check"></i><b>7.3.4</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html"><i class="fa fa-check"></i><b>8</b> Лабораторна робота №7. Пошук асоціативних правил<span></span></a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#що-ви-будете-вміти-6"><i class="fa fa-check"></i><b>8.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#короткі-теоретичні-відомості-6"><i class="fa fa-check"></i><b>8.2</b> Короткі теоретичні відомості<span></span></a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#у-чому-полягає-задача-пошуку-асоціативних-правил"><i class="fa fa-check"></i><b>8.2.1</b> У чому полягає задача пошуку асоціативних правил?<span></span></a></li>
+<li class="chapter" data-level="8.2.2" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#формальна-постановка-задачі-класифікації-1"><i class="fa fa-check"></i><b>8.2.2</b> Формальна постановка задачі класифікації<span></span></a></li>
+<li class="chapter" data-level="8.2.3" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#основні-міри-цікавості-асоціативних-правил"><i class="fa fa-check"></i><b>8.2.3</b> Основні міри “цікавості” асоціативних правил<span></span></a></li>
+<li class="chapter" data-level="8.2.4" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#пакети-arules-та-arulesviz"><i class="fa fa-check"></i><b>8.2.4</b> Пакети <code>arules</code> та <code>arulesViz</code><span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="lab_5.html"><a href="lab_5.html#ind"><i class="fa fa-check"></i><b>8.3</b> Приклад виконання індивідуального завдання<span></span></a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="лабораторна-робота-7.-пошук-асоціативних-правил.html"><a href="лабораторна-робота-7.-пошук-асоціативних-правил.html#індивідуальні-завдання-на-лабораторну-роботу-6"><i class="fa fa-check"></i><b>8.3.1</b> Індивідуальні завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="lab_8.html"><a href="lab_8.html"><i class="fa fa-check"></i><b>9</b> Лабораторна робота № 8. Побудова ARIMA-моделі часового ряду і прогнозування на її основі (short version)<span></span></a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="lab_8.html"><a href="lab_8.html#що-ви-будете-вміти-7"><i class="fa fa-check"></i><b>9.1</b> Що ви будете вміти?<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="lab_8.html"><a href="lab_8.html#ts-обєкт"><i class="fa fa-check"></i><b>9.2</b> ts-об’єкт<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="lab_8.html"><a href="lab_8.html#візуалізація-чр"><i class="fa fa-check"></i><b>9.3</b> Візуалізація ЧР<span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="lab_8.html"><a href="lab_8.html#стаціонарність-і-диференціювання"><i class="fa fa-check"></i><b>9.4</b> Стаціонарність і диференціювання<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="lab_8.html"><a href="lab_8.html#example"><i class="fa fa-check"></i><b>9.5</b> Приклад побудови не сезонної ARIMA-моделі<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="lab_8.html"><a href="lab_8.html#завдання-на-лабораторну-роботу"><i class="fa fa-check"></i><b>9.6</b> Завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><i class="fa fa-check"></i><b>10</b> Лабораторна робота № 9. Веб скрепінг. Пакет <code>rvest</code>. Short-версія<span></span></a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html#пакет-rvest"><i class="fa fa-check"></i><b>10.1</b> Пакет <code>rvest</code><span></span></a></li>
+<li class="chapter" data-level="10.2" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html#основні-методи-пакета-rvest"><i class="fa fa-check"></i><b>10.2</b> Основні методи пакета <code>rvest</code><span></span></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html#отримання-html-сторінки-і-знаходження-потрібного-елемента"><i class="fa fa-check"></i><b>10.2.1</b> Отримання <code>html</code>-сторінки і знаходження потрібного елемента<span></span></a></li>
+<li class="chapter" data-level="10.2.2" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html#розбір-елементів-на-складові-частини"><i class="fa fa-check"></i><b>10.2.2</b> Розбір елементів на складові частини<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html"><a href="лабораторна-робота-9.-веб-скрепінг.-пакет-rvest.-short-версія.html#завдання-на-лабораторну-роботу-1"><i class="fa fa-check"></i><b>10.3</b> Завдання на лабораторну роботу<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science на R. Лабораторний практикум (draft version)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Data Science на R. Лабораторний практикум (draft version)</h1>
+<p class="author"><em>© <a href="https://www.linkedin.com/in/valeriy-sydorenko-6782279a/">Сидоренко В. М.</a></em></p>
+<p class="date"><em>2022-04-01</em></p>
+</div>
+<div id="вступ" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Розділ 1</span> Вступ<a href="index.html#вступ" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<!-- >Русский военный корабль, иди нах`*`й!   -->
+<!-- >Белорусский трактор, иди в п`*`зду! -->
+<p>Лабораторний практикум призначений для виконання лабораторних робіт з дисципліни “Інтелектуальний аналіз даних,” який викладається в рамках освітньої магістерської програми “Комп’ютерна інженерія” на кафедрі <a href="http://cis.kdu.edu.ua/">комп’ютерної інженерії та електроніки</a> <a href="http://www.kdu.edu.ua/">Кременчуцького національного університету імені Михайла Остроградського</a>. Автор: доцент, к. т. н. <a href="https://www.linkedin.com/in/valeriy-sydorenko-6782279a/">Валерій СИДОРЕНКО</a>.</p>
+<p>Мета посібника, який у великій мірі є компілятивним, – у зручній і адаптованій формі довести новітні технології аналізу даних у середовищі R, спираючись на якісні і відомі першоджерела, зокрема <code>vignetts</code> відповідних програмних пакетів з ресурсу <a href="https://cran.r-project.org/">CRAN</a>. Тому місцями текст є безпосереднім перекладом з англійської.</p>
+<p>Структура посібника спирається на міждисциплінарний стандарт CRISP DM <span class="citation">(<a href="#ref-CRISP_DM" role="doc-biblioref">wikipedia 2018a</a>)</span> і надає можливість поступово опанувати роботу з відповідним інструментарієм для реалізації всіх етапів аналізу даних: імпорту та маніпулювання даними, розвідувального аналізу даних, візуалізації, моделювання та розгортання Data Science-проекту.</p>
+<p>Критичні відгуки та зауваження прохання надсилати наа адресою <a href="mailto:vnsidorenko@gmail.com" class="email">vnsidorenko@gmail.com</a>.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-CRISP_DM" class="csl-entry">
+wikipedia. 2018a. <span>“Cross-Industry Standard Process for Data Mining.”</span> Article. <a href="https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining">https://en.wikipedia.org/wiki/Cross-industry_standard_process_for_data_mining</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="modul1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
